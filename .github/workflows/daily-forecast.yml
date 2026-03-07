@@ -1,0 +1,23 @@
+name: Daily Morning Forecast
+
+on:
+  schedule:
+    - cron: '30 12 * * *'   # 12:30 UTC = 6:30 AM CST
+  workflow_dispatch:          # Manual trigger button
+
+jobs:
+  send-forecast:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install requests twilio
+      - run: python morning_forecast.py
+        env:
+          TWILIO_ACCOUNT_SID: ${{ secrets.TWILIO_ACCOUNT_SID }}
+          TWILIO_AUTH_TOKEN: ${{ secrets.TWILIO_AUTH_TOKEN }}
+          TWILIO_PHONE_NUMBER: ${{ secrets.TWILIO_PHONE_NUMBER }}
+          MY_PHONE_NUMBER: ${{ secrets.MY_PHONE_NUMBER }}
+          AMBEE_API_KEY: ${{ secrets.AMBEE_API_KEY }}
