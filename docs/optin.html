@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Morning Forecast Texter - SMS Opt-In</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f5f5; color: #333; line-height: 1.6; }
+        .container { max-width: 520px; margin: 40px auto; padding: 32px; background: #fff; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+        h1 { font-size: 1.5rem; margin-bottom: 4px; color: #1a1a1a; }
+        .subtitle { color: #666; font-size: 0.95rem; margin-bottom: 24px; }
+        .info-box { background: #eef6ff; border-left: 4px solid #2563eb; padding: 14px 16px; border-radius: 6px; margin-bottom: 24px; font-size: 0.9rem; }
+        .info-box ul { margin: 8px 0 0 18px; }
+        .info-box li { margin-bottom: 4px; }
+        label { display: block; font-weight: 600; margin-bottom: 6px; font-size: 0.9rem; }
+        input[type=tel] { width: 100%; padding: 12px 14px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 1rem; margin-bottom: 16px; }
+        input[type=tel]:focus { outline: none; border-color: #2563eb; box-shadow: 0 0 0 3px rgba(37,99,235,0.15); }
+        .consent-group { margin-bottom: 20px; }
+        .consent-item { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 12px; font-size: 0.88rem; color: #555; }
+        .consent-item input[type=checkbox] { margin-top: 3px; width: 18px; height: 18px; flex-shrink: 0; accent-color: #2563eb; }
+        .consent-item a { color: #2563eb; text-decoration: underline; }
+        button { width: 100%; padding: 14px; background: #2563eb; color: #fff; border: none; border-radius: 8px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: background 0.2s; }
+        button:hover { background: #1d4ed8; }
+        .disclosure { margin-top: 20px; padding-top: 16px; border-top: 1px solid #e5e7eb; font-size: 0.82rem; color: #888; line-height: 1.5; }
+        .success-msg { display: none; text-align: center; padding: 24px 0; }
+        .success-msg h2 { color: #16a34a; margin-bottom: 8px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Morning Forecast Texter</h1>
+        <p class="subtitle">Daily weather forecast SMS for McKinney, TX</p>
+        <div class="info-box">
+            <strong>What you will receive:</strong>
+            <ul>
+                <li>1 text message per day at approximately 6:30 AM CST</li>
+                <li>Weather forecast: temperature, conditions, rain chance, pollen levels</li>
+                <li>Reply STOP at any time to unsubscribe</li>
+            </ul>
+        </div>
+        <form id="optinForm">
+            <label for="phone">Mobile Phone Number</label>
+            <input type="tel" id="phone" name="phone" placeholder="(555) 123-4567" required>
+            <div class="consent-group">
+                <div class="consent-item">
+                    <input type="checkbox" id="consent" required>
+                    <span>I agree to receive 1 automated SMS message per day from Morning Forecast Texter containing weather forecast information. Message and data rates may apply. I can opt out at any time by replying STOP.</span>
+                </div>
+                <div class="consent-item">
+                    <input type="checkbox" id="terms" required>
+                    <span>I have read and agree to the <a href="privacy.html" target="_blank">Privacy Policy</a> and <a href="terms.html" target="_blank">Terms of Service</a>.</span>
+                </div>
+            </div>
+            <button type="submit" id="submitBtn">Subscribe</button>
+        </form>
+        <div class="success-msg" id="successMsg">
+            <h2>You are subscribed!</h2>
+            <p>You will receive your first morning forecast SMS tomorrow at approximately 6:30 AM CST.</p>
+            <p style="margin-top:8px;font-size:0.9rem;color:#666;">Reply STOP to any message to unsubscribe.</p>
+        </div>
+        <div class="disclosure">
+            <strong>Messaging Disclosure:</strong> By subscribing, you consent to receive 1 automated text message per day from Morning Forecast Texter. Message frequency: 1 msg/day. Message and data rates may apply. Reply STOP to cancel, HELP for help. View our <a href="privacy.html">Privacy Policy</a> and <a href="terms.html">Terms of Service</a>.<br><br>This is a personal, non-commercial weather notification service.
+        </div>
+    </div>
+    <script>
+        document.getElementById('optinForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            document.getElementById('optinForm').style.display = 'none';
+            document.getElementById('successMsg').style.display = 'block';
+        });
+    </script>
+</body>
+</html>
